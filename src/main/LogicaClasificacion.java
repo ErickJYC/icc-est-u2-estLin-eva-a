@@ -44,18 +44,19 @@ public class LogicaClasificacion {
      * @return true si forman un palíndromo, false si no
      */
     public boolean verificarPalindromoCola(Queue<String> cola) {
-       List<String> letras = new ArrayList<>(cola);
-    int izquierda = 0;
-    int derecha = letras.size() - 1;
-
-    while (izquierda < derecha) {
-        if (!letras.get(izquierda).equals(letras.get(derecha))) {
-            return false;
+        Stack<String> pila = new Stack<>();
+        for (String letra : cola) {
+            pila.push(letra);
         }
-        izquierda++;
-        derecha--;
-    }
 
-    return true;
+        for (String letra : cola) {
+            if (!letra.equals(pila.pop())) {
+                return false;
+            }
+        }
+
+        return true;
+
+    }
 
 }
